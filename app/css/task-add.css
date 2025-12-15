@@ -1,0 +1,82 @@
+.task-add-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 3px 5px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.task-add-title-wrap {
+    width: 60%;
+}
+
+.task-add-title-wrap,
+.task-add-etc-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.task-add-label {
+    font-weight: 600;
+    color: #495057;
+    min-width: 60px;
+}
+
+.task-add-input {
+    flex: 1;
+    width: 100%;
+    padding: 10px 14px;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.task-add-input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.task-add-submit {
+    padding: 10px 20px;
+    text-align: center;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.task-add-submit:hover {
+    background: #357abd;
+}
+
+.task-add-submit:active {
+    transform: scale(0.98);
+}
+
+
+@media (max-width: 650px) {
+    .task-add-container {
+        flex-direction: column;
+        /* 가로 배치 */
+        align-items: center;
+    }
+
+    .task-add-title-wrap {
+        flex-grow: 3;
+        width: 100%;
+    }
+
+    .task-add-etc-wrap {
+        position: relative;
+        margin-left: auto;
+    }
+}

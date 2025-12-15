@@ -1,0 +1,28 @@
+.auth-header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+    background-color: rgb(243, 243, 242);
+    color: #7a7a7a;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.auth-header-info-img,
+.auth-header-etc-home {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.auth-header-info,
+.auth-header-etc {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.auth-header-etc {
+    gap: 2px;
+    cursor: pointer;
+}

@@ -1,0 +1,53 @@
+.task-list-container {
+    padding: 5px;
+    margin-top: 20px;
+    flex-direction: column;
+    border-radius: 8px;
+}
+
+.task-list-item,
+.task-list-header {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 3px;
+    border: 1px solid rgba(208, 214, 221, .7);
+    margin-bottom: 8px;
+}
+
+.task-list-item:hover {
+    transform: translateY(-3px);
+    transition: transform .3s;
+}
+
+.task-add-due-date {
+    scale: 90%;
+}
+
+.task-list-title,
+.task-list-header-title {
+    flex: 1;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 6px;
+    color: rgb(73, 73, 73);
+    font-size: 14px;
+    font-weight: bold;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.task-list-header-title {
+    font-size: 13px;
+}
+
+.task-list-header {
+    background-color: rgba(208, 214, 221, 0.3);
+    border: none;
+    font-size: 13px;
+    color: rgb(73, 73, 73);
+}
+
+.task-list-header-title {
+    cursor: pointer;
+}

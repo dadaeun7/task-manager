@@ -1,0 +1,130 @@
+.task-filter-bar {
+    margin: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-filter-bar-find {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 55%;
+    padding: 8px 15px;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.task-filter-bar-find-input {
+    width: 95%;
+    outline: none;
+}
+
+.task-filter-bar-find-img {
+    cursor: pointer;
+    width: 19px;
+    height: 19px;
+}
+
+.task-filter-bar-select-count {
+    border-radius: 30px;
+    background-color: rgb(226, 58, 46);
+    color: white;
+    position: absolute;
+    padding: 1px 7px;
+    font-size: 13px;
+    font-weight: bold;
+    margin: -15px 0 0 60px;
+}
+
+.task-filter-bar-select-btn {
+    width: 100%;
+    /* 모바일은 전체 너비 */
+    padding: 9px 20px;
+    background: #5c5c5c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    outline: none;
+}
+
+.task-filter-bar-select-btn:hover {
+    background: #1d1d1d;
+}
+
+
+.task-filter-bar-select-content {
+    background: white;
+    border-radius: 6px;
+    padding: 9px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    min-width: 100px;
+}
+
+.filter-bar-select-item,
+.filter-reset {
+    padding: 9px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+.filter-bar-select-item:hover,
+.filter-reset:hover {
+    background: #f0f0f0;
+    outline: none;
+}
+
+/* ------------------------------ */
+
+.task-filter-bar-add-btn {
+    width: 100%;
+    /* 모바일은 전체 너비 */
+    padding: 9px 20px;
+    background: #1ed66b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.task-filter-bar-add-btn:hover {
+    background: #19a04d;
+}
+
+@media (max-width: 650px) {
+    .task-filter-bar {
+        flex-direction: column;
+        /* 가로 배치 */
+        align-items: center;
+    }
+
+    .task-filter-bar-find {
+        flex-grow: 3;
+        width: 100%;
+    }
+
+    .task-filter-bar-right {
+        position: relative;
+        margin-left: auto;
+        margin-top: 10px;
+    }
+
+    .task-filter-bar-add-btn {
+        width: auto;
+        /* 내용만큼만 */
+        padding: 9px 20px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+}
