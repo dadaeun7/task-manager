@@ -6,7 +6,7 @@ Firebase와 Next.js를 활용한 개인 작업 관리 애플리케이션
 
 - **제작 기간**: 10시간
 - **배포 방식**: Vercel을 통한 자동 배포
-- **배포 URL**: [추후 업데이트 예정]
+- **배포 URL**: [`dadaeun7-task-manager.vercel.app`](https://dadaeun7-task-manager.vercel.app/)
 
 ## 🛠 기술 스택
 
@@ -160,4 +160,4 @@ npm run dev
 
 **개발자**: [dadaeun7]
 **GitHub**: [[저장소 링크](https://github.com/dadaeun7/task-manager.git)]  
-**배포 URL**: [Vercel 배포 링크]
+**배포 URL**: [\[Vercel 배포 링크\]](https://dadaeun7-task-manager.vercel.app/)
