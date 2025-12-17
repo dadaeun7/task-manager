@@ -2,16 +2,20 @@
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import "../css/task-drop.css";
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { statusDBUpdate } from '@/lib/taskService';
+import { Task } from '../type/task';
 
 interface TaskDropProps {
+    setTasks: Dispatch<SetStateAction<Task[]>>;
+    selectFilters: string[];
+    setFilterList: Dispatch<SetStateAction<Task[]>>;
     status?: string;
     taskId: string;
     scale: string;
 }
 
-export default function TaskDrop({ status, taskId, scale }: TaskDropProps) {
+export default function TaskDrop({ setTasks, selectFilters, setFilterList, status, taskId, scale }: TaskDropProps) {
 
     const [cur, setCur] = useState<string>(status || '할일');
     const [click, setClick] = useState<boolean>(false);
@@ -63,6 +67,10 @@ export default function TaskDrop({ status, taskId, scale }: TaskDropProps) {
                             onClick={() => {
                                 statusUpdate(s);
                                 statusDBUpdate(taskId, s);
+                                setFilterList(list => selectFilters.length === 0 ? list.map(t => t.id === taskId ? { ...t, status: s as Task['status'] } : t) : list.map(t => t.id === taskId ?
+                                    { ...t, status: s as Task['status'] } : t
+                                ).filter(t => selectFilters.includes(t.status)));
+                                setTasks(task => task.map(t => t.id === taskId ? { ...t, status: s as Task['status'] } : t));
                             }}
                         >
                             {s}

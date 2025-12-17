@@ -6,15 +6,19 @@ import TaskDrop from "./TaskDrop";
 import "../css/all.css";
 import "../css/task-list.css";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useAuth } from "../auth/AuthProvider";
 
-export default function TaskList({ tasks, loadTask, filterList, setFilterList }:
+export default function TaskList({ tasks, loadTask, filterList, setFilterList, selectFilters, setTasks }:
     {
         tasks: Task[],
         loadTask: () => Promise<void>,
         filterList: Task[],
-        setFilterList: Dispatch<SetStateAction<Task[]>>
+        setFilterList: Dispatch<SetStateAction<Task[]>>,
+        selectFilters: string[],
+        setTasks: Dispatch<SetStateAction<Task[]>>
     }) {
 
+    const { loading } = useAuth();
     const [sortOrder, setSortOrder] = useState<boolean>(false);
     const [sortDate, setSortDate] = useState<boolean>(false);
 
@@ -58,7 +62,18 @@ export default function TaskList({ tasks, loadTask, filterList, setFilterList }:
             >마감일<span>{sortDate ? '🔺' : '🔻'}</span></div>
             <div style={headerStatus}>상태</div>
         </div>
-        {tasks.map(t => (
+
+        {loading && (
+
+            <div className="flex items-center justify-center min-h-screen gap-2 -mt-40">
+                <div className="w-3 h-3 bg-gray-500 rounded-full animate-bounce"></div>
+                <div className="w-3 h-3 bg-gray-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                <div className="w-3 h-3 bg-gray-500 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                <p className="absolute text-gray-600 text-lg mt-20">로딩중</p>
+            </div>
+
+        )}
+        {!loading && tasks.map(t => (
             <div key={t.id} className={`task-list-item ${t.id}`} style={index}>
                 <div className="task-list-title">{t.title}</div>
                 <div
@@ -70,8 +85,7 @@ export default function TaskList({ tasks, loadTask, filterList, setFilterList }:
                         min={new Date().toISOString().split('T')[0]}
                     />
                 </div>
-                <TaskDrop
-                    status={t.status} taskId={t.id} scale="90%" />
+                <TaskDrop setTasks={setTasks} selectFilters={selectFilters} setFilterList={setFilterList} status={t.status} taskId={t.id} scale="90%" />
             </div>
         ))}
     </div>)

@@ -15,6 +15,7 @@ export default function TaskMain() {
 
     const [tasks, setTasks] = useState<Task[]>([]);
     const [filterList, setFilterList] = useState<Task[]>([]);
+    const [selectFilters, setSelectFilters] = useState<string[]>([]);
 
     const { user } = useAuth();
     const loadTask = async () => {
@@ -39,9 +40,9 @@ export default function TaskMain() {
             <AuthHeader></AuthHeader>
             <h1 style={taskTitle}>📃작업 관리</h1>
             <div style={taskDescription}>복잡한 스케줄 관리를 손쉽게 해보세요🐳</div>
-            <TaskFilter addBar={addBar} setAddBar={setAddBar} tasks={tasks} filterList={filterList} setFilterList={setFilterList} />
+            <TaskFilter addBar={addBar} setAddBar={setAddBar} tasks={tasks} filterList={filterList} setFilterList={setFilterList} selectFilters={selectFilters} setSelectFilters={setSelectFilters} />
             {addBar && <TaskAdd></TaskAdd>}
-            <TaskList tasks={filterList} loadTask={loadTask} filterList={filterList} setFilterList={setFilterList}></TaskList>
+            <TaskList tasks={filterList} loadTask={loadTask} filterList={filterList} setFilterList={setFilterList} selectFilters={selectFilters} setTasks={setTasks}></TaskList>
         </div>
     )
 }

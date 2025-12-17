@@ -3,7 +3,7 @@
 
 import { auth } from "@/lib/firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 
 interface AuthContextType {
@@ -30,20 +30,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return () => unsubscribe();
     }, []);
 
-    const login = async (email: string, password: string) => {
+    const login = useCallback(async (email: string, password: string) => {
         await signInWithEmailAndPassword(auth, email, password);
-    }
+    }, []);
 
-    const signup = async (email: string, password: string) => {
+    const signup = useCallback(async (email: string, password: string) => {
         await createUserWithEmailAndPassword(auth, email, password);
-    }
+    }, []);
 
-    const logout = async () => {
+    const logout = useCallback(async () => {
         await signOut(auth);
-    }
+    }, []);
 
+    const value = useMemo(() => ({ user, loading, login, signup, logout }), [user, loading]);
     return (
-        <AuthContext.Provider value={{ user, loading, login, signup, logout }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
     )
 
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "../css/task-filter.css";
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { Task } from "@/app/type/task";
@@ -8,16 +8,18 @@ import { Task } from "@/app/type/task";
 
 const statusSelects = ['todo', 'doing', 'done'] as const;
 
-export default function TaskFilter({ addBar, setAddBar, tasks, filterList, setFilterList }:
+export default function TaskFilter({ addBar, setAddBar, tasks, filterList, setFilterList, selectFilters, setSelectFilters }:
     {
         addBar: Boolean,
         setAddBar: Dispatch<SetStateAction<Boolean>>,
         tasks: Task[],
         filterList: Task[],
-        setFilterList: Dispatch<SetStateAction<Task[]>>
+        setFilterList: Dispatch<SetStateAction<Task[]>>,
+        selectFilters: string[],
+        setSelectFilters: Dispatch<SetStateAction<string[]>>,
     }) {
 
-    const [selectFilters, setSelectFilters] = useState<string[]>([]);
+
     const [findIndex, setFindIndex] = useState<string>('');
 
     const toggleFilter = (status: string) => {
@@ -32,7 +34,6 @@ export default function TaskFilter({ addBar, setAddBar, tasks, filterList, setFi
             const filterTasks = tasks.filter(t => newFilter.includes(t.status));
             setFilterList(filterTasks);
         }
-
     }
 
     const toggleFindFilter = (find: string) => {
