@@ -7,7 +7,9 @@
 
 .task-list-item,
 .task-list-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 140px 100px;
+    gap: 10px;
     align-items: center;
     border-radius: 5px;
     padding: 3px;
@@ -20,14 +22,8 @@
     transition: transform .3s;
 }
 
-.task-add-due-date {
-    scale: 90%;
-}
-
 .task-list-title,
 .task-list-header-title {
-    flex: 1;
-    width: 100%;
     padding: 10px 14px;
     border-radius: 6px;
     color: rgb(73, 73, 73);

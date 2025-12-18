@@ -1,7 +1,5 @@
 input[type="date"] {
     padding: 12px 15px;
-    width: 100%;
-    max-width: 500px;
     font-size: '14px';
     border: 1px solid #ddd;
     border-radius: 5px;

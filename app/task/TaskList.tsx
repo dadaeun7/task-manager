@@ -5,7 +5,7 @@ import { dueDateDBUpdate, getTasks } from "@/lib/taskService";
 import TaskDrop from "./TaskDrop";
 import "../css/all.css";
 import "../css/task-list.css";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { useAuth } from "../auth/AuthProvider";
 
 export default function TaskList({ tasks, loadTask, filterList, setFilterList, selectFilters, setTasks }:
@@ -45,14 +45,17 @@ export default function TaskList({ tasks, loadTask, filterList, setFilterList, s
 
     return (<div className="task-list-container">
 
-        <div className="task-list-header">
+        <div
+            className="task-list-header">
             <div
                 className="task-list-header-title"
                 onClick={() => {
                     setSortOrder(!sortOrder);
                     setFilterList(toggleTitleBy);
                 }}
-            >작업명<span>{sortOrder ? '🔺' : '🔻'}</span></div>
+            >작업명<span>{sortOrder ? '🔺' : '🔻'}</span>
+            </div>
+
             <div
                 style={headerDueDate}
                 onClick={() => {
@@ -61,6 +64,7 @@ export default function TaskList({ tasks, loadTask, filterList, setFilterList, s
                 }}
             >마감일<span>{sortDate ? '🔺' : '🔻'}</span></div>
             <div style={headerStatus}>상태</div>
+
         </div>
 
         {loading && (
@@ -74,9 +78,12 @@ export default function TaskList({ tasks, loadTask, filterList, setFilterList, s
 
         )}
         {!loading && tasks.map(t => (
-            <div key={t.id} className={`task-list-item ${t.id}`} style={index}>
-                <div className="task-list-title">{t.title}</div>
+            <div key={t.id} className={`task-list-item ${t.id}`}>
                 <div
+                    className="task-list-title"
+                >{t.title}</div>
+                <div
+                    style={headerDueDate}
                     className="task-add-due-date">
                     <input
                         type="date"
@@ -86,25 +93,19 @@ export default function TaskList({ tasks, loadTask, filterList, setFilterList, s
                     />
                 </div>
                 <TaskDrop setTasks={setTasks} selectFilters={selectFilters} setFilterList={setFilterList} status={t.status} taskId={t.id} scale="90%" />
+
             </div>
         ))}
     </div>)
 }
 
-const index: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between'
-}
-
 const headerDueDate: React.CSSProperties = {
     cursor: 'pointer',
-    width: '129px',
     paddingLeft: '3px',
     fontWeight: 'bold'
 }
 
 const headerStatus: React.CSSProperties = {
-    width: '100px',
     paddingLeft: '13px',
     fontWeight: 'bold'
 }
